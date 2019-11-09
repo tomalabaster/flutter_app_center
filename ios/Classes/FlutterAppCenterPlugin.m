@@ -4,5 +4,6 @@
 @implementation FlutterAppCenterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   [SwiftFlutterAppCenterPlugin registerWithRegistrar:registrar];
+  [SwiftFlutterAppCenterAnalyticsPlugin registerWithRegistrar:registrar];
 }
 @end

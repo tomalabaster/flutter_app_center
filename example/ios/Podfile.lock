@@ -8,7 +8,7 @@ PODS:
   - AppCenter/Crashes (2.5.1):
     - AppCenter/Core
   - Flutter (1.0.0)
-  - flutter_app_center (0.0.1):
+  - flutter_app_center (1.0.0):
     - AppCenter
     - Flutter
 
@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AppCenter: fddcbac6e4baae3d93a196ceb0bfe0e4ce407dec
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_app_center: 4b458356aa37b0a3f90f2b125aed620b155d4d66
+  flutter_app_center: b85203f65c31891adbece3ee5c70961aa89a7264
 
 PODFILE CHECKSUM: b6a0a141693093b304368d08511b46cf3d1d0ac5
 
