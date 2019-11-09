@@ -21,6 +21,7 @@ public class SwiftFlutterAppCenterPlugin: NSObject, FlutterPlugin {
         }
         
         MSAppCenter.start(secret, withServices: services as? [AnyClass])
+        result(nil)
     } else if ("setLogLevel" == call.method) {
         let rawValue = args?["logLevel"] as? UInt ?? 0
         MSAppCenter.setLogLevel(MSLogLevel.init(rawValue: rawValue)!)
