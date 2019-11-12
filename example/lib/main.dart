@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:flutter_app_center/flutter_app_center.dart';
 import 'package:flutter_app_center/flutter_app_center_analytics.dart';
+import 'package:flutter_app_center/flutter_app_center_crashes.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +32,7 @@ class _MyAppState extends State<MyApp> {
         Platform.isIOS
             ? '72945258-6a1c-42a0-ae71-cefd0cfb985d'
             : '34cd3d3d-9d80-4998-85d7-3f02738902d6',
-        [FlutterAppCenterAnalytics.id]);
+        [FlutterAppCenterAnalytics.id, FlutterAppCenterCrashes.id]);
   }
 
   @override
@@ -68,6 +69,46 @@ class _MyAppState extends State<MyApp> {
             onPressed: () async {
               var enabled = await FlutterAppCenterAnalytics.isEnabled;
               await FlutterAppCenterAnalytics.setEnabled(!enabled);
+            },
+          ),
+          RaisedButton(
+            child: Text('Generate test crash'),
+            onPressed: () async {
+              await FlutterAppCenterCrashes.generateTestCrash();
+            },
+          ),
+          RaisedButton(
+            child: Text('Has received memory warning in last session'),
+            onPressed: () async {
+              print(await FlutterAppCenterCrashes
+                  .hasReceivedMemoryWarningInLastSession);
+            },
+          ),
+          RaisedButton(
+            child: Text('Has crashed in last session'),
+            onPressed: () async {
+              print(await FlutterAppCenterCrashes.hasCrashedInLastSession);
+            },
+          ),
+          RaisedButton(
+            child: Text('Last session crash report'),
+            onPressed: () async {
+              var crashReport =
+                  await FlutterAppCenterCrashes.lastSessionCrashReport;
+              print(crashReport);
+            },
+          ),
+          RaisedButton(
+            child: Text('Toggle Crashes'),
+            onPressed: () async {
+              var enabled = await FlutterAppCenterCrashes.isEnabled;
+              await FlutterAppCenterCrashes.setEnabled(!enabled);
+            },
+          ),
+          RaisedButton(
+            child: Text('Disable Mach exception handler'),
+            onPressed: () async {
+              await FlutterAppCenterCrashes.disableMachExceptionHandler();
             },
           )
         ])),

@@ -5,5 +5,6 @@
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   [SwiftFlutterAppCenterPlugin registerWithRegistrar:registrar];
   [SwiftFlutterAppCenterAnalyticsPlugin registerWithRegistrar:registrar];
+  [SwiftFlutterAppCenterCrashesPlugin registerWithRegistrar:registrar];
 }
 @end

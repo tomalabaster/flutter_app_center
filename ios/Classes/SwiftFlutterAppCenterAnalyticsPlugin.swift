@@ -11,9 +11,7 @@ public class SwiftFlutterAppCenterAnalyticsPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     let args = call.arguments as? Dictionary<String, Any>
-    
-    let x = args?["properties"] as? [String : String]
-    
+        
     if ("trackEvent" == call.method) {
         MSAnalytics.trackEvent(args?["eventName"] as! String, withProperties: args?["properties"] as? [String : String])
         result(nil)
