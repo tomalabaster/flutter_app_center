@@ -20,6 +20,7 @@ class FlutterAppCenterPlugin(registrar: Registrar) : MethodCallHandler {
       channel.setMethodCallHandler(FlutterAppCenterPlugin(registrar))
 
       FlutterAppCenterAnalyticsPlugin.registerWith(registrar)
+      FlutterAppCenterCrashesPlugin.registerWith(registrar)
     }
   }
 
