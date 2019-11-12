@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter_app_center/flutter_app_center.dart';
+import 'package:flutter_app_center/flutter_app_center_analytics.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,6 +26,12 @@ class _MyAppState extends State<MyApp> {
     // message was in flight, we want to discard the reply rather than calling
     // setState to update our non-existent appearance.
     if (!mounted) return;
+
+    await FlutterAppCenter.start(
+        Platform.isIOS
+            ? '72945258-6a1c-42a0-ae71-cefd0cfb985d'
+            : '34cd3d3d-9d80-4998-85d7-3f02738902d6',
+        [FlutterAppCenterAnalytics.id]);
   }
 
   @override
@@ -31,8 +42,35 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Flutter App Center'),
         ),
         body: Center(
-          child: Text('Flutter App Center'),
-        ),
+            child: Column(children: [
+          Text('Flutter App Center'),
+          RaisedButton(
+            child: Text('Track event'),
+            onPressed: () async {
+              await FlutterAppCenterAnalytics.trackEvent(
+                  'test', {'testProp': 'testVal', 'testProp2': 2});
+            },
+          ),
+          RaisedButton(
+            child: Text('Pause Analytics'),
+            onPressed: () async {
+              await FlutterAppCenterAnalytics.pause();
+            },
+          ),
+          RaisedButton(
+            child: Text('Resume Analytics'),
+            onPressed: () async {
+              await FlutterAppCenterAnalytics.resume();
+            },
+          ),
+          RaisedButton(
+            child: Text('Toggle Analytics'),
+            onPressed: () async {
+              var enabled = await FlutterAppCenterAnalytics.isEnabled;
+              await FlutterAppCenterAnalytics.setEnabled(!enabled);
+            },
+          )
+        ])),
       ),
     );
   }

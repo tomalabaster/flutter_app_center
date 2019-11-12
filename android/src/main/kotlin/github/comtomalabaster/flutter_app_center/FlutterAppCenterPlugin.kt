@@ -2,14 +2,12 @@ package github.comtomalabaster.flutter_app_center
 
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.AppCenterService
-import com.microsoft.appcenter.analytics.Analytics
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class FlutterAppCenterPlugin(registrar: Registrar) : MethodCallHandler {
@@ -20,6 +18,8 @@ class FlutterAppCenterPlugin(registrar: Registrar) : MethodCallHandler {
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "flutter_app_center")
       channel.setMethodCallHandler(FlutterAppCenterPlugin(registrar))
+
+      FlutterAppCenterAnalyticsPlugin.registerWith(registrar)
     }
   }
 
